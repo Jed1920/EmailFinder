@@ -14,12 +14,19 @@ public class Main {
         Path filePath = Paths.get("Sample.txt");
         String content = Files.readString(filePath);;
 
-        String stringToFind = "techsmiths.uk";
-        int stringLen = stringToFind.length();
-        //int counter = stringCounter(content,stringToFind,stringLen);
-
         Pattern p = Pattern.compile("(@\\w+.)");
         Matcher m = p.matcher(content);
+
+        // Regex to find email addresses
+        // Groups of .com or .co.uk .net
+        // hashmap to store unique address
+        // parse file count, unique adddress
+
+        // output top 10 - //order hash
+
+
+
+
         int counter = 0;
         while (m.find()){
             counter++;
