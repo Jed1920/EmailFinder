@@ -4,8 +4,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.Files;
 import java.io.IOException;
-
-
+import java.util.regex.Pattern;
+import java.util.regex.Matcher;
 
 public class Main {
 
@@ -14,22 +14,16 @@ public class Main {
         Path filePath = Paths.get("Sample.txt");
         String content = Files.readString(filePath);;
 
-        String stringToFind = "@techsmiths.uk";
+        String stringToFind = "techsmiths.uk";
         int stringLen = stringToFind.length();
-        int counter = stringCounter(content,stringToFind,stringLen);
+        //int counter = stringCounter(content,stringToFind,stringLen);
 
-        System.out.println(counter);
-    }
-
-    private static int stringCounter(String content, String strToFind, int strLen){
-
-        int stringCounter = 0;
-
-        for (int i = 0; i <= content.length()-strLen; i++) {
-            if (content.substring(i, i + strLen).equals(strToFind)) {
-                stringCounter++;
-            }
+        Pattern p = Pattern.compile("(@\\w+.)");
+        Matcher m = p.matcher(content);
+        int counter = 0;
+        while (m.find()){
+            counter++;
         }
-        return stringCounter;
+        System.out.print(counter);
     }
 }
