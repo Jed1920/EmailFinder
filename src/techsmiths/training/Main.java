@@ -5,12 +5,14 @@ import java.nio.file.Paths;
 import java.nio.file.Files;
 import java.io.IOException;
 
+
+
 public class Main {
 
-    public static void main(String[] args) {
-        // write your code here
+    public static void main(String[] args) throws IOException {
+
         Path filePath = Paths.get("Sample.txt");
-        String content = getFileContents(filePath);
+        String content = Files.readString(filePath);;
 
         String stringToFind = "@techsmiths.uk";
         int stringLen = stringToFind.length();
@@ -29,18 +31,5 @@ public class Main {
             }
         }
         return stringCounter;
-    }
-
-    private static String getFileContents(Path path){
-        String content = "";
-
-        try {
-            content += Files.readString(path);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return content;
     }
 }
